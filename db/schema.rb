@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171226130844) do
+ActiveRecord::Schema.define(version: 20171226160607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20171226130844) do
     t.integer "ads_total_num"
     t.integer "non_ads_num"
     t.integer "total_links_num"
-    t.integer "total_search_results_num"
+    t.string "total_search_results_num"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "ads_top_urls", default: [], array: true

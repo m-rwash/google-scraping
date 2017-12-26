@@ -1,2 +1,50 @@
-<h1>Keywords#index</h1>
-<p>Find me in app/views/keywords/index.html.erb</p>
+<%= form_tag(import_keywords_path, multipart: true) do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag( "Import" ) %>
+<% end %>
+
+
+<table>
+  <thead>
+  	<tr>
+  		<th>Keyword</th>
+  		<th>AdWords in top position</th>
+  		<th>AdWords in bottom position</th>
+  		<th>Adwords total</th>
+  		<th>Non-AdWords total</th>
+  		<th>Total Links</th>
+  		<th>Total Search Results</th>
+  		<th>Top AdWords URLs</th>
+  		<th>Bottom AdWords URLs</th>
+  		<th>Non-AdWords URLs</th>
+  	</tr>
+  </thead>
+  <tbody>
+  	<% @keywords.each do |keyword| %>
+  	<tr>
+  		<td><%=keyword.keyword%></td>
+  		<td><%=keyword.ads_top_num%></td>
+  		<td><%=keyword.ads_bottom_num%></td>
+  		<td><%=keyword.ads_total_num%></td>
+  		<td><%=keyword.non_ads_num%></td>
+  		<td><%=keyword.total_links_num%></td>
+  		<td><%=keyword.total_search_results_num%></td>
+  		<td>
+  			<%keyword.ads_top_urls.each do |url|%>
+  				<li><%= link_to(url) %></li>
+  			<%end%>
+  		</td>
+  		<td>
+  			<%keyword.ads_bottom_urls.each do |url|%>
+  				<li><%= link_to(url) %></li>
+  			<%end%>
+  		</td>
+  		<td>
+  			<%keyword.non_ads_urls.each do |url|%>
+  				<li><%= link_to(url) %></li>
+  			<%end%>
+  		</td>
+  	</tr>
+  	<%end%>
+  </tbody>
+</table>
