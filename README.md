@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+###Keyword Model
+* keyword:string
+* html:text
+* ads_top_num:number
+* ads_bottom_num:number
+* ads_total_num:number
 
-Things you may want to cover:
+**** ads_top_urls:array  
+**** ads_bottom_urls:array
 
-* Ruby version
+* non_ads_num:number
 
-* System dependencies
+**** non_ads_urls:array
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* total_links_num:number
+* total_search_results_num:number
