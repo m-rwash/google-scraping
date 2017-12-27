@@ -39,6 +39,8 @@ gem 'rack-cors'
 
 gem 'pry'
 
+gem 'doorkeeper'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
