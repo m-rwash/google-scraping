@@ -8,6 +8,10 @@ namespace :api, defaults: {format: 'json'} do
   end
 end	
 
+get '/login' => 'sessions#new'
+post '/login' => 'sessions#create'
+get '/logout' => 'sessions#destroy'
+
   root 'keywords#index'	
   # get 'keywords/index'
   # get 'keywords/show'

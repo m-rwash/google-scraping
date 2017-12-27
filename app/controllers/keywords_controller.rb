@@ -1,10 +1,12 @@
 class KeywordsController < ApplicationController
+  before_action :authorize
+  
   def index
   	@keywords = Keyword.all
   end
 
   def import
-  	
+
   	if params[:file] != nil
   		Keyword.destroy_all
   		Keyword.import(params[:file]) 
