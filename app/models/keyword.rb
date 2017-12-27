@@ -9,7 +9,7 @@ class Keyword < ApplicationRecord
       random_agent =  UserAgentRandomizer::UserAgent.fetch.string
       doc = Nokogiri::HTML(open(url, "User-Agent" => random_agent))
       
-      html = doc.to_html #HTML code of the page
+      html = doc.to_html.force_encoding('iso8859-1').encode('utf-8') #HTML code of the page
 
       #Number of AdWords in top position
       ads_top_num = doc.css("div[@id='_Ltg']").css('.ads-ad').size
@@ -27,7 +27,9 @@ class Keyword < ApplicationRecord
       total_links_num = non_ads_num + ads_total_num
       
       #Total of search results for this keywords e.g. About 21,600,000 results (0.42 seconds)
-      total_search_results_num = doc.at_css('#resultStats').inner_html.strip
+      #total_search_results_num = doc.at_css('#resultStats').inner_html.strip
+      total_search_results_num = doc.css('.sd').text
+
       #URLs of AdWords advertisers in the top position
       ads_top_urls = []
       doc.css("div[@id='_Ltg']").css('.ads-ad').each do |ad|

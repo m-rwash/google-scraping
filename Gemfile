@@ -33,6 +33,12 @@ gem 'jbuilder', '~> 2.5'
 gem 'nokogiri'
 gem 'user-agent-randomizer'
 
+gem 'responders'
+
+gem 'rack-cors'
+
+gem 'pry'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

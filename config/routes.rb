@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+namespace :api, defaults: {format: 'json'} do
+  namespace :v1 do
+  	resources :keywords do
+		collection {post :import}
+	end
+  end
+end	
+
   root 'keywords#index'	
   # get 'keywords/index'
   # get 'keywords/show'
@@ -9,5 +17,4 @@ Rails.application.routes.draw do
   	collection {post :import}
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

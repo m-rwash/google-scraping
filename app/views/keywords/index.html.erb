@@ -1,4 +1,4 @@
-<%= form_tag(import_keywords_path, multipart: true) do %>
+<%= form_tag(import_api_v1_keywords_path, multipart: true) do %>
   <%= file_field_tag :file %>
   <%= submit_tag( "Import" ) %>
 <% end %>

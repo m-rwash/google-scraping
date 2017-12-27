@@ -4,6 +4,7 @@ class KeywordsController < ApplicationController
   end
 
   def import
+  	
   	if params[:file] != nil
   		Keyword.destroy_all
   		Keyword.import(params[:file]) 
