@@ -16,3 +16,8 @@
 
 * total_links_num:number
 * total_search_results_num:number
+
+###Resources:
+* [Testing API Authentication using OAuth2 gem](https://github.com/doorkeeper-gem/doorkeeper/wiki/Testing-your-provider-with-OAuth2-gem)
+* [Implementing Oauth2 using doorkeeper [RailsCasts]](http://railscasts.com/episodes/353-oauth-with-doorkeeper)
+* 

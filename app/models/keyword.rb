@@ -4,7 +4,7 @@ require 'user_agent_randomizer'
 
 class Keyword < ApplicationRecord
   def self.import(file)
-    CSV.foreach(file.path, headers: true) do |keyword|
+    CSV.foreach(file.path, headers: true) do |keyword, index|
       url = url = "http://www.google.com/search?q=#{keyword.to_s}"
       random_agent =  UserAgentRandomizer::UserAgent.fetch.string
       doc = Nokogiri::HTML(open(url, "User-Agent" => random_agent))
@@ -17,7 +17,7 @@ class Keyword < ApplicationRecord
       #Number of AdWords in bottom position
       ads_bottom_num = doc.css("div[@id='_Ktg']").css('.ads-ad').size
       
-	  #Total number of AdWords
+	    #Total number of AdWords
       ads_total_num = ads_top_num + ads_bottom_num
       
       #Number of the non-AdWords results
@@ -33,28 +33,59 @@ class Keyword < ApplicationRecord
       #URLs of AdWords advertisers in the top position
       ads_top_urls = []
       doc.css("div[@id='_Ltg']").css('.ads-ad').each do |ad|
-		ads_top_urls.push(ad.css('.ads-visurl').css('._WGk').text)
-	  end
+		    ads_top_urls.push(ad.css('.ads-visurl').css('._WGk').text)
+	    end
 
-	  #URLs of AdWords advertisers in the bottom position
+	    #URLs of AdWords advertisers in the bottom position
       ads_bottom_urls = []
       doc.css("div[@id='_Ktg']").css('.ads-ad').each do |ad|
-		ads_bottom_urls.push(ad.css('.ads-visurl').css('._WGk').text)
-	  end
+		    ads_bottom_urls.push(ad.css('.ads-visurl').css('._WGk').text)
+	    end
 
-	  #URLs of the non-AdWords results
+	    #URLs of the non-AdWords results
       non_ads_urls = []
       doc.css("div[@id='res']").css('.g').search('cite').each do |search|
-		non_ads_urls.push(search.inner_text)
-	  end
+		    non_ads_urls.push(search.inner_text)
+	    end
 
-	  Keyword.create!(keyword: keyword, ads_top_num: ads_top_num,
-	  				  ads_bottom_num: ads_bottom_num, ads_total_num: ads_total_num,
-	  				  non_ads_num: non_ads_num, total_links_num: total_links_num,
-	  				  total_search_results_num: total_search_results_num,
-	  				  ads_top_urls: ads_top_urls, ads_bottom_urls: ads_bottom_urls,
-	  				  non_ads_urls: non_ads_urls)
-      #Keyword.create!(keyword: keyword)
+	    Keyword.create!(keyword: keyword, ads_top_num: ads_top_num,
+      	  				    ads_bottom_num: ads_bottom_num, ads_total_num: ads_total_num,
+      	  				    non_ads_num: non_ads_num, total_links_num: total_links_num,
+      	  				    total_search_results_num: total_search_results_num,
+      	  				    ads_top_urls: ads_top_urls, ads_bottom_urls: ads_bottom_urls,
+      	  				    non_ads_urls: non_ads_urls, html: html)
+
+    end
+  end
+
+  def self.search_keyword(term)
+    if term
+      self.where('keyword LIKE ?', "%#{term}%")
+    else
+      self.all
+    end
+  end
+
+  def self.search_adwords_urls(term)
+    if term
+      # Concatenate all urls and use || as seprator
+      # ILIKE for matching patterns 
+      self.where("array_to_string(ads_top_urls, '||') ILIKE :pattern OR 
+        array_to_string(ads_bottom_urls, '||') ILIKE  :pattern ", pattern: "%#{term}%")
+    else
+      self.all
+    end
+  end
+
+  def self.search_url(term)
+    if term
+      self.where("array_to_string(ads_top_urls, '||') ILIKE :pattern OR 
+        array_to_string(ads_bottom_urls, '||') ILIKE  :pattern OR
+        array_to_string(non_ads_urls, '||') ILIKE  :pattern ", pattern: "%#{term}%")
+       # self.where("array_to_string(ads_top_urls, '||') ILIKE :pattern OR 
+       #  array_to_string(ads_bottom_urls, '||') ILIKE  :pattern ", pattern: "%#{term}%")
+    else
+      self.all
     end
   end
 end
