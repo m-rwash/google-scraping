@@ -1,5 +1,5 @@
-#Google Search Results Scraper:
-###Development Environment/Tools:
+# Google Search Results Scraper:
+### Development Environment/Tools:
 *  OS: Ubuntu 17.10
 *  Shell: [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
 *  DB Manager: Postgresql
@@ -9,7 +9,7 @@
 *  Ruby 2.4
 *  Redis 4.0.6
 
-###Gems I've used:
+### Gems I've used:
 *  [nokogiri](http://www.nokogiri.org/) => Parsing HTML
 *  [user-agent-randomizer](https://github.com/asconix/user-agent-randomize) => Random HTTP User-Agent string generator
 *  [responders](https://github.com/plataformatec/responders) => Set of responders modules 
