@@ -30,6 +30,18 @@
   *  Search though keywords
   *  Search URLs (ads and non-ads)
 
+###Clone and run it localy:
+1. git clone `git clone https://github.com/m-rwash/google-scraping`
+2. `$ cd google-scraping`
+3. `$ bundle`
+4. `$ rails db:create db:migrate`
+5. install sidekiq
+6. `$ bundle exec sidekiq`
+7. run rails server `$ rails s`
+8. browse http://localhost:3000
+
+###LIVE on Heroku
+
 ###You'll likely end up banned from Google due many requests in short time, here's solutions I've found
 *  Sending requests with different user-agents; each request with new user-agent and thats already implemented.
 * What you can do to for extra protection:
