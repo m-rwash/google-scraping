@@ -18,11 +18,11 @@ Rails.application.routes.draw do
     end
   end	
 
-  get '*path', to: 'keywords#index'
+  #get '*path', to: 'keywords#index'
   root 'static_pages#home'
 
 
-  resources :keywords, only: :index do
+  resources :keywords, only: [:index, :show] do
   	collection {post :import}
   end
 

@@ -26,6 +26,7 @@ gem 'pry'
 gem 'doorkeeper'
 gem 'devise'
 gem 'rails_autolink'
+gem 'rouge-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

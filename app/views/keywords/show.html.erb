@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="row well">
+		<div class="col-md-1">
+			<h4>Keyword: </h4>
+		</div>
+		<div class="col-md-2">
+			<h4><%=@keyword.keyword%></h4>
+		</div>
+
+		<div class="col-md-2">
+			<h4>Total Ads: </h4>
+		</div>
+		<div class="col-md-2">
+			<h4><%=@keyword.ads_total_num%></h4>
+		</div>
+		
+		<div class="col-md-3">
+			<h4><%=@keyword.total_search_results_num%></h4>
+		</div>
+		
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<code>
+				<%=@keyword.html%>
+			</code>
+		</div>
+	</div>
+</div>
