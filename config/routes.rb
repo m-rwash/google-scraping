@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
   use_doorkeeper
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
@@ -13,10 +14,6 @@ Rails.application.routes.draw do
   	  end
     end
   end	
-
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
 
   get '*path', to: 'keywords#index'
   root 'keywords#index'	

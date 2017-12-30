@@ -1,5 +1,5 @@
 class KeywordsController < ApplicationController
-  before_action :authorize
+  before_action :authenticate_user!
 
   def index
   	@keywords = Keyword.all.order(keyword: :asc).page(params[:page])
