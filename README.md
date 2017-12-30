@@ -18,6 +18,8 @@
 *  [devise](https://github.com/plataformatec/devise) => Authentication
 *  [rails_autolink](https://github.com/tenderlove/rails_autolink) => Returns sanitized html_safe strings
 *  [sidekiq](https://sidekiq.org/) => Background processing
+*  bootstrap-sas => Twitter's Bootstrap for the frontend 
+
 
 ### App Flow
 1. User Login/Signup.
@@ -40,18 +42,17 @@
 7. run rails server `$ rails s`
 8. browse http://localhost:3000
 
+#### Notice:
+*  API authenticated through OAuth2 to test it. Check that out [Testing API Authentication using OAuth2 gem](https://github.com/doorkeeper-gem/doorkeeper/wiki/Testing-your-provider-with-OAuth2-gem)
 
-### You'll likely end up banned from Google due many requests in short time, here's solutions I've found
+#### Notice: 
+You'll likely end up banned from Google due many requests in short time, here's solutions I've found
 *  Sending requests with different user-agents; each request with new user-agent and thats already implemented.
 * What you can do to for extra protection:
    *  use [Tor](https://github.com/TheTorProject/gettorbrowser); sending requests thorough Tor browser, but you have to try many exit nodes till get one working cause google keeps blocking Tor nodes. This gem was helpful for me you may try it (https://github.com/brunogh/tor_requests)
    *  using private VPN
 
 
-
-#### Frontend: Twitter Bootstrap, Sass
-
-### Resources:
-* [Testing API Authentication using OAuth2 gem](https://github.com/doorkeeper-gem/doorkeeper/wiki/Testing-your-provider-with-OAuth2-gem)
+#### Resources helped me:
 * [Implementing Oauth2 using doorkeeper [RailsCasts]](http://railscasts.com/episodes/353-oauth-with-doorkeeper)
 * [Background job using sidekiq](https://github.com/mperham/sidekiq/wiki/Getting-Started)
