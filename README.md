@@ -1,4 +1,4 @@
-#Google search results scrapper:
+#Google Search Results Scraper:
 ###Development Environment/Tools:
 *  OS: Ubuntu 17.10
 *  Shell: [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
@@ -23,9 +23,9 @@
 1. User Login/Signup.
 2. Authenticated User can upload CSV File containing keywords to scrape.
 3. Iterate every Keyword send it to background job using Sidekiq:
-  1.  [Sidekiq](https://sidekiq.org/) wokrer start scrapping.
+  1.  [Sidekiq](https://sidekiq.org/) wokrer start scraping.
   2.  Push results to keyword model.
-4. Authenticated User can view/ or search/query scrapped/extracted results
+4. Authenticated User can view/ or search/query scraped/extracted results
   *  View all details(number of adwords and it's position, ads urls, non-ads urls, search results number, HTML code of result page..etc)
   *  Search though keywords
   *  Search URLs (ads and non-ads)
