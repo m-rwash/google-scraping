@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-
-  get 'static_pages/home'
-  get 'static_pages/about'
-
+  root 'static_pages#home'
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}
+
+  resources :keywords, only: [:index, :show] do
+    collection {post :import}
+  end
+
   use_doorkeeper
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
@@ -18,12 +20,6 @@ Rails.application.routes.draw do
     end
   end	
 
-  #get '*path', to: 'keywords#index'
-  root 'static_pages#home'
-
-
-  resources :keywords, only: [:index, :show] do
-  	collection {post :import}
-  end
-
+  get 'static_pages/home'
+  #get 'static_pages/about'
 end
