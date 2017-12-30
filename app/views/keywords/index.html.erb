@@ -1,21 +1,13 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1>Google Scrapper</h1> 
-    <p>Scrape google search results and return useful informations</p> 
-    <p>Upload CSV File contains words you want to scrape, then <strong>Click Import</strong></p>
-  
-    <div class="well row well-row">
+<div class="row well">
     <%= form_tag(import_keywords_path, multipart: true) do %>
-      <div class="col-xs-3">
+      <div class="col-md-3">
         <%= file_field_tag :file, class: 'btn' %>
       </div>
-      <div class="col-xs-8">
+      <div class="col-md-9">
          <%= submit_tag("Import", class: 'btn btn-primary') %>
       </div>
-    <% end %>
-  </div>
-  </div>
-</div> 
+    <% end %>    
+</div>
 
 <div>
   <div class="well col-xs-4">
@@ -67,17 +59,17 @@
         <td><%=keyword.total_search_results_num%></td>
         <td class="green-url">
           <%keyword.ads_top_urls.each do |url|%>
-            <li><%= link_to(url) %></li>
+            <li><%= auto_link(url) %></li>
           <%end%>
         </td>
         <td class="green-url">
           <%keyword.ads_bottom_urls.each do |url|%>
-            <li><%= link_to(url) %></li>
+            <li><%= auto_link(url) %></li>
           <%end%>
         </td>
         <td>
           <%keyword.non_ads_urls.each do |url|%>
-            <li><%= link_to(url) %></li>
+            <li><%= auto_link(url) %></li>
           <%end%>
         </td>
       </tr>

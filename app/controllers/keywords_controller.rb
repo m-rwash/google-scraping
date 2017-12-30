@@ -20,6 +20,7 @@ class KeywordsController < ApplicationController
   	if params[:file] != nil
   		Keyword.import(params[:file]) 
   	end
+    flash[:notice] = "Uploaded Successfuly!"
   	redirect_to keywords_path
   end
 
