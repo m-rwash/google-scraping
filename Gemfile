@@ -26,7 +26,6 @@ gem 'pry'
 gem 'doorkeeper'
 gem 'devise'
 gem 'rails_autolink'
-gem 'rouge-rails'
 gem 'sidekiq'
 
 group :development, :test do
