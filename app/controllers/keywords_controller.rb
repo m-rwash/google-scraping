@@ -14,6 +14,16 @@ class KeywordsController < ApplicationController
   	@keywords = Keyword.search_url(params[:search_url]).page(params[:page])
                 .paginate(:page => params[:page], :per_page => 10) if params[:search_url].present?
   	@count = @keywords.count
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = KeywordsReportPdf.new(@keywords)
+        send_data pdf.render, filename: "Keywords Report.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
 
   def import

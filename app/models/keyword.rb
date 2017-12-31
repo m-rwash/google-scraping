@@ -1,6 +1,5 @@
 require 'csv'
 
-
 class Keyword < ApplicationRecord
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |keyword, index|
@@ -32,8 +31,6 @@ class Keyword < ApplicationRecord
       self.where("array_to_string(ads_top_urls, '||') ILIKE :pattern OR 
         array_to_string(ads_bottom_urls, '||') ILIKE  :pattern OR
         array_to_string(non_ads_urls, '||') ILIKE  :pattern ", pattern: "%#{term}%")
-       # self.where("array_to_string(ads_top_urls, '||') ILIKE :pattern OR 
-       #  array_to_string(ads_bottom_urls, '||') ILIKE  :pattern ", pattern: "%#{term}%")
     else
       self.all
     end

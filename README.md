@@ -19,28 +19,31 @@
 *  [rails_autolink](https://github.com/tenderlove/rails_autolink) => Returns sanitized html_safe strings
 *  [sidekiq](https://sidekiq.org/) => Background processing
 *  bootstrap-sas => Twitter's Bootstrap for the frontend 
-
+*  [prawn](https://github.com/prawnpdf/prawn) => Build PDF report
 
 ### App Flow
 1. User Login/Signup.
 2. Authenticated User can upload CSV File containing keywords to scrape.
 3. Iterate every Keyword send it to background job using Sidekiq:
-  1.  [Sidekiq](https://sidekiq.org/) wokrer start scraping.
-  2.  Push results to keyword model.
+  1.  *[Sidekiq](https://sidekiq.org/)* wokrer start scraping in the background.
+  2.  Parse HTML *using nokogiri*
+  3.  Push results to keyword model.
 4. Authenticated User can view/ or search/query scraped/extracted results
-  *  View all details(number of adwords and it's position, ads urls, non-ads urls, search results number, HTML code of result page..etc)
-  *  Search though keywords
-  *  Search URLs (ads and non-ads)
+  -  View all details(number of adwords and it's position, ads urls, non-ads urls,search results number, HTML code of result page..etc)
+  -  Search though keywords
+  -  Search URLs (ads and non-ads)
+5. User can download generated PDF report *using Prawn and PrawnTable gems*
 
 ### Clone and run it localy:
 1. git clone `git clone https://github.com/m-rwash/google-scraping`
 2. `$ cd google-scraping`
 3. `$ bundle`
 4. `$ rails db:create db:migrate`
-5. install sidekiq
-6. `$ bundle exec sidekiq`
-7. run rails server `$ rails s`
-8. browse http://localhost:3000
+5. run redis server 
+6. install sidekiq
+7. `$ bundle exec sidekiq`
+8. run rails server `$ rails s`
+9. browse http://localhost:3000
 
 #### Notice:
 *  API authenticated through OAuth2 to test it. Check that out [Testing API Authentication using OAuth2 gem](https://github.com/doorkeeper-gem/doorkeeper/wiki/Testing-your-provider-with-OAuth2-gem)
