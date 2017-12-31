@@ -1,4 +1,5 @@
-# Google Search Results Scraper:
+# Google Search Results Scraper
+Scrap google search results and return back with how many/what Ads the page has, URLs of those Ads, how many results came out(i.e 12350000 in 1.5 seconds), links, html code and more. Saving scraped data to database and ability for extracting it to PDF file. Provided with an OAuth2 RESTful API also. 
 ### Development Environment/Tools:
 *  OS: Ubuntu 17.10
 *  Shell: [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
@@ -55,6 +56,9 @@ You'll likely end up banned from Google due many requests in short time, here's 
    *  use [Tor](https://github.com/TheTorProject/gettorbrowser); sending requests thorough Tor browser, but you have to try many exit nodes till get one working cause google keeps blocking Tor nodes. This gem was helpful for me you may try it (https://github.com/brunogh/tor_requests)
    *  using private VPN
 
+#### TODO:
+* Testing
+* Deploying to heroku
 
 #### Resources helped me:
 * [Implementing Oauth2 using doorkeeper [RailsCasts]](http://railscasts.com/episodes/353-oauth-with-doorkeeper)
