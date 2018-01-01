@@ -27,11 +27,15 @@ class KeywordsController < ApplicationController
   end
 
   def import
-  	if params[:file] != nil
+  	if params[:file]
   		Keyword.import(params[:file]) 
-  	end
-    flash[:notice] = "Uploaded Successfuly!"
-  	redirect_to keywords_path
+      flash[:success] = "Uploaded Successfuly!"
+      redirect_to keywords_path
+  	else
+      flash[:alert] = "Can't read CSV file or it's empty"
+      render :index
+    end
+    
   end
 
   def show

@@ -29,11 +29,18 @@ gem 'rails_autolink'
 gem 'sidekiq'
 gem 'prawn'
 gem 'prawn-table'
+gem 'fabrication'
+gem 'ffaker'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
 
 group :development do

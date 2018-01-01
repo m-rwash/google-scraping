@@ -20,6 +20,6 @@ Rails.application.routes.draw do
     end
   end	
 
-  get 'static_pages/home'
+  get 'static_pages/home', as: 'home'
   #get 'static_pages/about'
 end
