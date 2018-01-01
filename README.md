@@ -1,5 +1,20 @@
 # Google Search Results Scraper
 Scrap google search results and return back with how many/what Ads the page has, URLs of those Ads, how many results came out(i.e 12350000 in 1.5 seconds), links, html code and more. Saving scraped data to database and ability for extracting it to PDF file. Provided with an OAuth2 RESTful API also. 
+
+### App Flow
+1. User Login/Signup.
+2. Authenticated User can upload CSV File containing keywords to scrape.
+3. Iterate every Keyword send it to background job using Sidekiq:
+  1.  *[Sidekiq](https://sidekiq.org/)* wokrer start scraping in the background.
+  2.  Parse HTML *using nokogiri*
+  3.  Push results to keyword model.
+4. Authenticated User can view/ or search/query scraped/extracted results
+  -  View all details(number of adwords and it's position, ads urls, non-ads urls,search results number, HTML code of result page..etc)
+  -  Search though keywords
+  -  Search URLs (ads and non-ads)
+5. User can download generated PDF report *using Prawn and PrawnTable gems*
+
+
 ### Development Environment/Tools:
 *  OS: Ubuntu 17.10
 *  Shell: [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
@@ -21,19 +36,12 @@ Scrap google search results and return back with how many/what Ads the page has,
 *  [sidekiq](https://sidekiq.org/) => Background processing
 *  bootstrap-sas => Twitter's Bootstrap for the frontend 
 *  [prawn](https://github.com/prawnpdf/prawn) => Build PDF report
+*  [fabrication](https://github.com/paulelliott/fabrication) => Object generator 
+*  [ffaker](https://github.com/ffaker/ffaker) => Generate fake data
+*  [simplecov](https://github.com/colszowka/simplecov) => Code coverage tool
+*  [rspec-rails](https://github.com/rspec/rspec-rails) => Testing framework
+*  [guard-rspec](https://github.com/guard/guard-rspec) => Watching files
 
-### App Flow
-1. User Login/Signup.
-2. Authenticated User can upload CSV File containing keywords to scrape.
-3. Iterate every Keyword send it to background job using Sidekiq:
-  1.  *[Sidekiq](https://sidekiq.org/)* wokrer start scraping in the background.
-  2.  Parse HTML *using nokogiri*
-  3.  Push results to keyword model.
-4. Authenticated User can view/ or search/query scraped/extracted results
-  -  View all details(number of adwords and it's position, ads urls, non-ads urls,search results number, HTML code of result page..etc)
-  -  Search though keywords
-  -  Search URLs (ads and non-ads)
-5. User can download generated PDF report *using Prawn and PrawnTable gems*
 
 ### Clone and run it localy:
 1. git clone `git clone https://github.com/m-rwash/google-scraping`
@@ -57,8 +65,8 @@ You'll likely end up banned from Google due many requests in short time, here's 
    *  using private VPN
 
 #### TODO:
-* Testing
-* Deploying to heroku
+* Testing (now coverd about 50%)
+* Deploying to heroku with redis add-on to run sidekiq process
 
 #### Resources helped me:
 * [Implementing Oauth2 using doorkeeper [RailsCasts]](http://railscasts.com/episodes/353-oauth-with-doorkeeper)
