@@ -1,15 +1,5 @@
-require 'csv'
-
 class Keyword < ApplicationRecord
   validates :keyword, presence: true
-
-  def self.import(file)
-    if file.read
-      CSV.foreach(file.path) do |keyword, index|
-        ScrapeWorker.perform_async(keyword)
-      end
-    end
-  end
 
   def self.search_keyword(term)
     if term

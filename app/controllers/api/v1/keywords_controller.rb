@@ -1,9 +1,9 @@
 module Api
   module V1
   	class KeywordsController < ApplicationController
-    	skip_before_action :verify_authenticity_token
+    	#skip_before_action :verify_authenticity_token
   	  respond_to :json
-  	  #before_action :doorkeeper_authorize!
+  	  before_action :doorkeeper_authorize!
   	  def index
   	  	respond_with Keyword.all.order(keyword: :asc)
   	  end

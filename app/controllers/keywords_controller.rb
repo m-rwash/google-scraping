@@ -28,7 +28,8 @@ class KeywordsController < ApplicationController
 
   def import
   	if params[:file]
-  		Keyword.import(params[:file]) 
+      binding.pry
+  		ScrapeWorker.perform_async(params[:file].path) 
       flash[:success] = "Uploaded Successfuly!"
       redirect_to keywords_path
   	else
