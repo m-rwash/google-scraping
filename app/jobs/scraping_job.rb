@@ -10,7 +10,7 @@ class ScrapingJob < ApplicationJob
       CSV.foreach(file_path) do |keyword, index|
         url = url = "http://www.google.com/search?q=#{keyword.to_s}"
 		random_agent =  UserAgentRandomizer::UserAgent.fetch.string
-		doc = Nokogiri::HTML(open(url, "User-Agent" => random_agent))
+		doc = Nokogiri::HTML(open(url))
 
 		html = doc.to_html.force_encoding('iso8859-1').encode('utf-8') #HTML code of the page
 

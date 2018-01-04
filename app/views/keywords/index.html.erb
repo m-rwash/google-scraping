@@ -8,94 +8,90 @@
          <%= submit_tag("Import", class: 'btn btn-primary') %>
       </div>
     <% end %>    
-</div>
+  </div>
 
-<div class="row">
-  <div class="well col-xs-4">
-    <%= form_tag keywords_path, :method => 'get' do %>
+  <div class="row">
+    <div class="well col-xs-4">
+      <%= form_tag keywords_path, :method => 'get' do %>
         <%= text_field_tag :search_keyword, params[:search_keyword] %>
         <%= submit_tag "Search Keywords" %>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
 
-  <div class="well col-xs-4">
-    <%= form_tag keywords_path, :method => 'get' do %>
+    <div class="well col-xs-4">
+      <%= form_tag keywords_path, :method => 'get' do %>
         <%= text_field_tag :search_adwords_urls, params[:search_adwords_urls] %>
         <%= submit_tag "Search Adwords URLs" %>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
 
-  <div class="well col-xs-4">
-    <%= form_tag keywords_path, :method => 'get' do %>
+    <div class="well col-xs-4">
+      <%= form_tag keywords_path, :method => 'get' do %>
         <%= text_field_tag :search_url, params[:search_url] %>
         <%= submit_tag "Search ALL URLs" %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <table class ='table table-striped table-bordered table-responsive'>
-      <legend>Keywords Report</legend>
-      <div class="row">
-        <div class="col-xs-4">
-          <h4>Results: <strong><%=@count%></strong></h4>
+  <div class="row">
+    <div class="col-md-12">
+      <table class ='table table-striped table-bordered table-responsive'>
+        <legend>Keywords Report</legend>
+        <div class="row">
+          <div class="col-xs-4">
+            <h4>Results: <strong><%=@count%></strong></h4>
+          </div>
+          <div class="col-xs-4">
+            <h4><strong><%= link_to("Download Keywords Report (PDF)", keywords_path(format: "pdf")) %></strong></h4>
+          </div>
         </div>
-        <div class="col-xs-4">
-          <h4><strong><%= link_to("Download Keywords Report (PDF)", keywords_path(format: "pdf")) %></strong></h4>
-        </div>
-      </div>
-      
-      <thead>
-        <tr>
-          <th>Keyword</th>
-          <th>AdWords at Top Position</th>
-          <th>AdWords at Bottom Position</th>
-          <th>Total Adwords</th>
-          <th>Total Non-AdWords</th>
-          <th>Total Links</th>
-          <th>Total Search Results</th>
-          <th>Top AdWords URLs</th>
-          <th>Bottom AdWords URLs</th>
-          <th>Non-AdWords URLs</th>
-          <th>HTML</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @keywords.each do |keyword| %>
-        <tr>
-          <td><%= keyword.keyword %></td>
-          <td><%= keyword.ads_top_num %></td>
-          <td><%= keyword.ads_bottom_num %></td>
-          <td><%= keyword.ads_total_num %></td>
-          <td><%= keyword.non_ads_num %></td>
-          <td><%= keyword.total_links_num %></td>
-          <td><%= keyword.total_search_results_num %></td>
-          <td class="green-url">
-            <% keyword.ads_top_urls.each do |url|%>
-              <li><%= auto_link(url) %></li>
-            <%end%>
-          </td>
-          <td class="green-url">
-            <% keyword.ads_bottom_urls.each do |url|%>
-              <li><%= auto_link(url) %></li>
-            <%end%>
-          </td>
-          <td>
-            <% keyword.non_ads_urls.each do |url|%>
-              <li><%= auto_link(url) %></li>
-            <%end%>
-          </td>
-          <td><%= link_to("View HTML", keyword_path(keyword)) %></td>
-        </tr>
-        <%end%>
-      </tbody>
-    <%= will_paginate @keywords %>
-    </table>
-  </div>
-  
-</div>
-
-  
+        
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>AdWords at Top Position</th>
+            <th>AdWords at Bottom Position</th>
+            <th>Total Adwords</th>
+            <th>Total Non-AdWords</th>
+            <th>Total Links</th>
+            <th>Total Search Results</th>
+            <th>Top AdWords URLs</th>
+            <th>Bottom AdWords URLs</th>
+            <th>Non-AdWords URLs</th>
+            <th>HTML</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @keywords.each do |keyword| %>
+          <tr>
+            <td><%= keyword.keyword %></td>
+            <td><%= keyword.ads_top_num %></td>
+            <td><%= keyword.ads_bottom_num %></td>
+            <td><%= keyword.ads_total_num %></td>
+            <td><%= keyword.non_ads_num %></td>
+            <td><%= keyword.total_links_num %></td>
+            <td><%= keyword.total_search_results_num %></td>
+            <td class="green-url">
+              <% keyword.ads_top_urls.each do |url|%>
+                <li><%= auto_link(url) %></li>
+              <%end%>
+            </td>
+            <td class="green-url">
+              <% keyword.ads_bottom_urls.each do |url|%>
+                <li><%= auto_link(url) %></li>
+              <%end%>
+            </td>
+            <td>
+              <% keyword.non_ads_urls.each do |url|%>
+                <li><%= auto_link(url) %></li>
+              <%end%>
+            </td>
+            <td><%= link_to("View HTML", keyword_path(keyword)) %></td>
+          </tr>
+          <%end%>
+        </tbody>
+      <%= will_paginate @keywords %>
+      </table>
+    </div>
+  </div>  
 </div>
