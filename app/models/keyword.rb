@@ -1,7 +1,16 @@
 class Keyword < ApplicationRecord
   validates :keyword, presence: true
 
+  def self.search(search_params)
+    return search_keyword(search_params[:search_keyword]) if search_params[:search_keyword].present?
+    return search_adwords_urls(search_params[:search_keyword]) if search_params[:search_adwords_urls].present?
+    search_url(search_params[:search_url]) if search_params[:search_url].present?
+  end
+
+  private
+
   def self.search_keyword(term)
+    binding.pry
     if term
       self.where('keyword LIKE ?', "%#{term}%")
     else
