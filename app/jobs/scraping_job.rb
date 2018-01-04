@@ -2,8 +2,9 @@ require 'open-uri'
 require 'user_agent_randomizer'
 require 'csv'
 
-class ScrapeWorker
-  include Sidekiq::Worker
+class ScrapingJob < ApplicationJob
+  queue_as :default
+
   def perform(file_path)
   	if file_path
       CSV.foreach(file_path) do |keyword, index|
